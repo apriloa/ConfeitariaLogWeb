@@ -10,51 +10,39 @@
 </h:head>
 <h:body>
 	<h1>Sistema de Logistica de Confeitaria</h1>
-	<h2>Gerenciamento de Funcionários</h2>
+	<h2>Gerenciamento de Categorias</h2>
 
 	<h:form>
 		<!-- <h:outputLabel value="Filtrar por" for="chaveNome"/>
 		<h:inputText id="chaveNome" value="#{alunoControlador.chaveNome}"/>
 		<h:commandButton action="null" value="Buscar"/> -->
-		<p:commandButton action="#{funcionarioControlador.incluir}"
+		<p:commandButton action="#{categoriaControlador.incluir}"
 			value="Novo" />
 		<p:commandButton action="index" value="Voltar" />
-		<p:dataTable value="#{funcionarioControlador.funcionarios}"
-			var="funcionario" border="1">
+		<p:dataTable value="#{categoriaControlador.categorias}"
+			var="categoria" border="1">
 			<p:column>
 				<f:facet name="header">ID</f:facet>
-				#{funcionario.id}
+				#{categoria.id}
 			</p:column>
 			<p:column>
 				<f:facet name="header">Nome</f:facet>
-				#{funcionario.nome}
+				#{categoria.nome}
 			</p:column>
 			<p:column>
-				<f:facet name="header">CPF</f:facet>
-				#{funcionario.cpf}
+				<f:facet name="header">Descrição</f:facet>
+				#{categoria.descricao}
 			</p:column>
 			<p:column>
-				<f:facet name="header">Telefone</f:facet>
-				#{funcionario.telefone}
-			</p:column>
-			<p:column>
-				<f:facet name="header">Sexo</f:facet>
-				#{funcionario.sexo}
-			</p:column>
-			<p:column>
-				<f:facet name="header">Idade</f:facet>
-				#{funcionario.idade}
-			</p:column>
-			<p:column>
-				<f:facet name="header">Endereco</f:facet>
-				#{funcionario.endereco}
+				<f:facet name="header">Fornecedor</f:facet>
+				#{fornecedor.nome}
 			</p:column>
 			<p:column>
 				<f:facet name="header">Operações</f:facet>
 				<p:commandButton value="Editar/Salvar" icon="pi pi-save"
-					action="#{funcionarioControlador.editar(funcionario)}" />
+					action="#{categoriaControlador.editar(categoria)}" />
 				<p:commandButton value="Excluir"
-					action="#{funcionarioControlador.excluir(funcionario)}" />
+					action="#{categoriaControlador.excluir(categoria)}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

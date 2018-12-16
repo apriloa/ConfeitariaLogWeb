@@ -10,51 +10,43 @@
 </h:head>
 <h:body>
 	<h1>Sistema de Logistica de Confeitaria</h1>
-	<h2>Gerenciamento de Funcionários</h2>
+	<h2>Gerenciamento de Materiais</h2>
 
 	<h:form>
 		<!-- <h:outputLabel value="Filtrar por" for="chaveNome"/>
 		<h:inputText id="chaveNome" value="#{alunoControlador.chaveNome}"/>
 		<h:commandButton action="null" value="Buscar"/> -->
-		<p:commandButton action="#{funcionarioControlador.incluir}"
+		<p:commandButton action="#{materialControlador.incluir}"
 			value="Novo" />
 		<p:commandButton action="index" value="Voltar" />
-		<p:dataTable value="#{funcionarioControlador.funcionarios}"
-			var="funcionario" border="1">
+		<p:dataTable value="#{materialControlador.materiais}"
+			var="material" border="1">
 			<p:column>
 				<f:facet name="header">ID</f:facet>
-				#{funcionario.id}
+				#{material.id}
 			</p:column>
 			<p:column>
 				<f:facet name="header">Nome</f:facet>
-				#{funcionario.nome}
+				#{material.nome}
 			</p:column>
 			<p:column>
-				<f:facet name="header">CPF</f:facet>
-				#{funcionario.cpf}
+				<f:facet name="header">Descrição</f:facet>
+				#{material.descricao}
 			</p:column>
 			<p:column>
-				<f:facet name="header">Telefone</f:facet>
-				#{funcionario.telefone}
+				<f:facet name="header">Data de Validade</f:facet>
+				#{material.dataValidade}
 			</p:column>
 			<p:column>
-				<f:facet name="header">Sexo</f:facet>
-				#{funcionario.sexo}
-			</p:column>
-			<p:column>
-				<f:facet name="header">Idade</f:facet>
-				#{funcionario.idade}
-			</p:column>
-			<p:column>
-				<f:facet name="header">Endereco</f:facet>
-				#{funcionario.endereco}
+				<f:facet name="header">Categorias</f:facet>
+				#{categoria.nome}
 			</p:column>
 			<p:column>
 				<f:facet name="header">Operações</f:facet>
 				<p:commandButton value="Editar/Salvar" icon="pi pi-save"
-					action="#{funcionarioControlador.editar(funcionario)}" />
+					action="#{materialControlador.editar(material)}" />
 				<p:commandButton value="Excluir"
-					action="#{funcionarioControlador.excluir(funcionario)}" />
+					action="#{materialControlador.excluir(material)}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

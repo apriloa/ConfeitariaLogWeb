@@ -1,38 +1,35 @@
 package br.ufac.logconf.controle;
 
-import java.io.Serializable;
+
 import java.util.*;
 import javax.faces.bean.*;
 
 import br.ufac.logconf.entidades.Funcionario;
+import br.ufac.logconf.entidades.Pedido;
 import br.ufac.logconf.repositorios.FuncionarioRepositorio;
+import br.ufac.logconf.repositorios.PedidoRepositorio;
 
 
 @ManagedBean(name="funcionarioControlador")
 @SessionScoped
-public class FuncionarioControlador implements Serializable {
+public class FuncionarioControlador {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private List<Funcionario> funcionarios;
 	private FuncionarioRepositorio fr;
+	private PedidoRepositorio pr;
 	private Funcionario funcionario;
 	private String chaveNome="";
+	private Pedido pedido;
 	
 	
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
 
 	public FuncionarioControlador() {
 		fr = new FuncionarioRepositorio();
-	//	pr = new PedidoRepositorio();
+		pr = new PedidoRepositorio();
 	}
 
 	public List<Funcionario> getFuncionarios() {
@@ -52,6 +49,11 @@ public class FuncionarioControlador implements Serializable {
 	public String incluir() {
 		funcionario = new Funcionario();
 		return "funcionarioInclusao";
+	}
+	
+	public String adicionarPedido() {
+		pr.adicionar(pedido);
+		return "pedidolistagem";
 	}
 	
 	public String adicionar() {

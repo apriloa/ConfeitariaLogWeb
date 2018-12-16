@@ -10,14 +10,21 @@ import br.ufac.logconf.repositorios.*;
 @SessionScoped
 public class MaterialControlador {
 
-	private List<Material> materials;
+	private List<Material> materiais;
 	private MaterialRepositorio mr;
+	private Categoria categoria;
 	private Material material;
 	private String chaveNome = "";
 
 	public Material getmaterial() {
 		return material;
 	}
+
+	
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
 
 	public MaterialControlador() {
 		mr = new MaterialRepositorio();
@@ -37,17 +44,17 @@ public class MaterialControlador {
 		return "materialInclusao";
 	}
 
-	public List<Material> getmaterials() {
-		return materials;
+	public List<Material> getmateriais() {
+		return materiais;
 	}
 
-	public void setmaterials(List<Material> materials) {
-		this.materials = materials;
+	public void setmateriais(List<Material> materiais) {
+		this.materiais = materiais;
 	}
 
 	public String adicionar() {
 		mr.adicionar(material);
-		return "funcionarioListagem";
+		return "materialListagem";
 	}
 
 	public String editar(Material material) {

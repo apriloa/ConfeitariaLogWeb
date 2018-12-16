@@ -14,6 +14,7 @@ public class FornecedorControlador {
 	private List<Fornecedor> fornecedores;
 	private FornecedorRepositorio fo;
 	private PedidoRepositorio pr;
+	private Categoria categoria;
 	private int pedidoCodigo;
 	private Fornecedor fornecedor;
 	private String chaveNome="";
@@ -21,10 +22,18 @@ public class FornecedorControlador {
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
+	
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+
 
 	public FornecedorControlador() {
 		fo = new FornecedorRepositorio();
 		pr = new PedidoRepositorio();
+		
 		
 	}
 	

@@ -12,6 +12,7 @@ import br.ufac.logconf.repositorios.*;
 public class CategoriaControlador {
 
 	private List<Categoria> categorias;
+	private MaterialRepositorio mr;
 	private CategoriaRepositorio cr;
 	private Categoria categoria;
 	private String chaveNome="";
@@ -22,7 +23,7 @@ public class CategoriaControlador {
 
 	public CategoriaControlador() {
 		cr = new CategoriaRepositorio();
-	//	mr = new MaterialRepositorio();
+		mr = new MaterialRepositorio();
 		
 	}
 
