@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="/template/main.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="funcionarioId"
+			value="#{funcionarioControlador.funcionarioId}" />
+		<f:viewAction action="#{funcionarioControlador.recuperarPorId}"
+			if="#{param.funcionarioId != null}" />
+	</f:metadata>
+
+	<ui:define name="content">
+		<h1>
+			<p:inputText value="Edição de Funcionarios"
+				rendered="#{funcionarioControlador.funcionarioId != null}" />
+			<p:inputText value="Cadastro de Funcionarios"
+				rendered="#{funcionarioControlador.funcionarioId == null}" />
+		</h1>
+
+		<h:messages id="messages" globalOnly="true" />
+
+		<h:form id="formFuncionarios">
+
+			<c:choose>
+				<c:when test="#{funcionarioControlador.funcionarioId != null}">
+					<div id="edite">
+						<h:outputLabel value="Status: " for="status">
+							<h:selectOneMenu
+								value="#{funcionarioControlador.funcionario.tipoStatus}" id="status">
+								<f:selectItem itemValue="" itemLabel="Alterar Status" />
+								<f:selectItems value="#{funcionarioControlador.tipoStatus}" var="tipo"
+									itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+							</h:selectOneMenu>
+						</h:outputLabel>
+
+						<br /> <br />
+						<h:outputLabel value="Permissão: " for="permissao">
+							<h:selectOneMenu
+								value="#{funcionarioControlador.funcionario.tipoPermissao}"
+								id="permissao">
+								<f:selectItem itemValue="" itemLabel="Alterar Permissão" />
+								<f:selectItems value="#{funcionarioControlador.tipoPermissao}"
+									var="tipo" itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+							</h:selectOneMenu>
+						</h:outputLabel>
+					</div>
+				</c:when>
+			</c:choose>
+
+			<div>
+				<h:outputLabel value="Nome da Funcionário:" for="nome" />
+				<p:inputText id="nome" value="#{funcionarioControlador.funcionario.nome}"
+					required="true" requiredMessage="Nome do Funcionario obrigatório"
+					validatorMessage="Nome da Funcionario deve ter entre 2 e 80 caracteres"
+					maxlength="80">
+					<f:validateLength minimum="2" />
+					<f:ajax event="blur" render="nomeMessage" />
+				</p:inputText>
+				<h:message for="nome" id="nomeMessage" />
+
+				<br /> <br />
+				<h:outputLabel value="CPF:" for="cpf" />
+				<p:inputText id="cpf" value="#{funcionarioControlador.funcionario.cpf}"
+					required="true" requiredMessage="CNPJ da Funcionario obrigatório"
+					validatorMessage="CPF da Funcionario deve ter 11 caracteres numéricos"
+					maxlength="11">
+					<f:validateLength minimum="11" />
+					<f:ajax event="blur" render="cpfMessage" />
+				</p:inputText>
+				<h:message for="cpf" id="cpfMessage" />
+
+				<br /> <br />
+				<h:outputLabel value="Sexo:" for="sexo" />
+				<span class="input-radio"> <h:selectOneRadio
+						value="#{funcionarioControlador.funcionario.sexo}" id="sexo"
+						required="true" requiredMessage="Selecione uma opção de sexo">
+						<f:selectItems value="#{funcionarioControlador.tipoSexo}" var="sexo"
+							itemValue="#{sexo}" itemLabel="#{sexo.label}" />
+						<f:ajax event="blur" render="sexoMessage" />
+					</h:selectOneRadio></span>
+				<h:message for="sexo" id="sexoMessage" />
+
+				<br /> <br />
+				<h:outputLabel value="Data de Nascimento:" for="dataNascimento" />
+				<p:inputText id="dataNascimento"
+					value="#{funcionarioControlador.funcionario.dataNascimento.time}"
+					required="true" requiredMessage="Data de Nascimento Obrigatória"
+					maxlength="10">
+					<f:convertDateTime pattern="dd/MM/yyyy"
+						timeZone="America/Sao_Paulo" />
+				</p:inputText>
+				<h:message for="dataNascimento" id="dataNascimentoMessage" />
+
+				<br /> <br />
+				<h:outputLabel value="Filial:" for="filialId" />
+				<h:selectOneMenu value="#{funcionarioControlador.filialId}" id="filialId">
+					<c:choose>
+						<c:when test="#{funcionarioControlador.funcionario.filial.id == null}">
+							<f:selectItem itemValue="" itemLabel="Escolha uma Filial" />
+						</c:when>
+						<c:when test="#{funcionarioControlador.funcionario.filial.id != null}">
+							<f:selectItem
+								itemValue="#{funcionarioControlador.funcionario.filial.id}"
+								itemLabel="#{funcionarioControlador.funcionario.filial.nome}" />
+						</c:when>
+					</c:choose>
+					<f:selectItems value="#{filialBean.filiais}" var="filial"
+						itemLabel="#{filial.nome}" itemValue="#{filial.id}" />
+				</h:selectOneMenu>
+				<p:commandLink value="Cadastrar Nova Filial"
+					action="cadastrofilial?faces-redirect=true" immediate="true" />
+
+				<br /> <br />
+				<h:outputLabel value="Endereço:" for="endereco" />
+				<p:inputText id="endereco"
+					value="#{funcionarioControlador.funcionario.endereco}" required="true"
+					requiredMessage="Endereço obrigatório"
+					validatorMessage="Endereço Obrigatório" maxlength="80">
+					<f:validateLength minimum="2" />
+					<f:ajax event="blur" render="enderecoMessage" />
+				</p:inputText>
+				<h:message for="endereco" id="enderecoMessage" />
+
+				<br /> <br />
+				<h:outputLabel value="Telefone:" for="telefone" />
+				<p:inputText id="telefone"
+					value="#{funcionarioControlador.funcionario.telefone}" required="true"
+					requiredMessage="Número de Telefone obrigatório"
+					validatorMessage="Telefone Invalido" maxlength="11">
+					<f:validateLength minimum="10" />
+					<f:ajax event="blur" render="telefoneMessage" />
+				</p:inputText>
+				<h:message for="telefone" id="telefoneMessage" />
+
+				<br /> <br />
+				<h:outputLabel value="Email:" for="email" />
+				<p:inputText id="email" value="#{funcionarioControlador.funcionario.email}"
+					validatorMessage="Email Invalido" maxlength="80">
+					<f:validateRegex pattern=".+@.+" />
+					<f:validateLength minimum="5" />
+					<f:ajax event="blur" render="emailMessage" />
+				</p:inputText>
+				<h:message for="email" id="emailMessage" />
+
+				<br /> <br />
+				<h:outputLabel value="Senha:" for="senha" />
+				<p:inputSecret id="senha"
+					value="#{funcionarioControlador.funcionario.senha}"
+					validatorMessage="Senha Invalida" maxlength="32">
+					<f:validateLength minimum="6" />
+					<f:ajax event="blur" render="senhaMessage" />
+				</p:inputSecret>
+				<h:message for="senha" id="senhaMessage" />
+			</div>
+
+			<br />
+			<br />
+			<div>
+				<p:commandButton id="gravar" value="Gravar"
+					action="#{funcionarioControlador.gravar}" class="botao">
+					<f:ajax execute="@form" render="@form :messages" />
+				</h:commandButton>
+				<p:commandButton value="Limpar" type="reset" class="botao" />
+				<p:commandButton value="Voltar" action="index?faces-redirect=true"
+					immediate="true" class="botao" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

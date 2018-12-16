@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/template/main.xhtml">
+	<ui:define name="content">
+		<h1>Consulta de Funcionarios</h1>
+		<h:messages id="messages" globalOnly="true" />
+
+		<h:form id="formBusca">
+			<h:outputLabel value="Nome do Funcionario:" for="nome" />
+			<h:inputText value="#{funcionarioBean.funcionarioNome}" id="nome">
+				<f:ajax execute="@form" render="@form :formTabela" />
+			</h:inputText>
+
+			<h:outputLabel value="Status: " for="status">
+				<h:selectOneMenu value="#{funcionarioBean.status}" id="status">
+					<f:selectItem itemValue="" itemLabel="Selecionar Status" />
+					<f:selectItems value="#{funcionarioBean.tipoStatus}" var="tipo"
+						itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+					<f:ajax execute="@form" render="@form :formTabela" />
+				</h:selectOneMenu>
+			</h:outputLabel>
+
+			<h:outputLabel value="Permissão: " for="permissao">
+				<h:selectOneMenu value="#{funcionarioBean.permissao}" id="permissao">
+					<f:selectItem itemValue="" itemLabel="Selecionar Permissão" />
+					<f:selectItems value="#{funcionarioBean.tipoPermissao}" var="tipo"
+						itemLabel="#{tipo.label}" itemValue="#{tipo}" />
+					<f:ajax execute="@form" render="@form :formTabela" />
+				</h:selectOneMenu>
+			</h:outputLabel>
+
+			<h:outputLabel value="Filial:" for="filialId" />
+			<h:selectOneMenu value="#{funcionarioBean.filialId}" id="filialId">
+				<f:selectItem itemValue="" itemLabel="Escolha uma Filial" />
+				<f:selectItems value="#{filialBean.filiais}" var="filial"
+					itemLabel="#{filial.nome}" itemValue="#{filial.id}" />
+				<f:ajax execute="@form" render="@form :formTabela" />
+
+			</h:selectOneMenu>
+
+			<h:commandButton value="Buscar" action="#{funcionarioBean.listar}"
+				class="botao" />
+		</h:form>
+
+
+		<h:form id="formTabela">
+			<h:outputText class="tabela-aviso"
+				value="Nenhum Registro com essas condicões foi encontrado"
+				rendered="#{funcionarioBean.funcionarios.size() == 0}" />
+
+			<h:dataTable value="#{funcionarioBean.funcionarios}"
+				var="funcionario" id="funcionario" class="formTabela"
+				rendered="#{funcionarioBean.funcionarios.size() != 0}">
+				<f:facet name="header">Tabela de Funcionarios</f:facet>
+				<h:column>
+					<f:facet name="header">Nome do Funcionário</f:facet>
+					<h:outputText value="#{funcionario.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">CPF</f:facet>
+					<h:outputText value="#{funcionario.cpf}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Telefone</f:facet>
+					<h:outputText value="#{funcionario.telefone}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					<h:outputText value="#{funcionario.email}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Status</f:facet>
+					<h:outputText value="#{funcionario.tipoStatus.label}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Permissao</f:facet>
+					<h:outputText value="#{funcionario.tipoPermissao.label}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Filial </f:facet>
+					<h:outputText value="#{funcionario.filial.nome}" />
+				</h:column>
+
+				<h:column>
+					<f:facet name="header">Editar</f:facet>
+					<h:link value="Editar"
+						outcome="#{funcionarioBean.editar(funcionario)}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Excluir</f:facet>
+					<h:commandLink value="Excluir"
+						action="#{funcionarioBean.remover(funcionario)}" />
+				</h:column>
+
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
