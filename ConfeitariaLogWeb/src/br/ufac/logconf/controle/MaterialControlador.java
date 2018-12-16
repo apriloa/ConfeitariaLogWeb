@@ -45,6 +45,7 @@ public class MaterialControlador {
 	}
 
 	public List<Material> getmateriais() {
+		materiais = mr.recuperarTodos();
 		return materiais;
 	}
 

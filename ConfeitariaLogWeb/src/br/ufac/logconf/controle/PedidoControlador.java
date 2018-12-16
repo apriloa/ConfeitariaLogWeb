@@ -13,7 +13,8 @@ public class PedidoControlador {
 
 	private List<Pedido> pedidos;
 	private PedidoRepositorio pr;
-	//private ItemPedidoRepositorio ipr;
+	private Funcionario funcionario;
+	private Fornecedor fornecedor;
 	private Pedido pedido;
 	private int pedidoCodigo;
 	private String chaveNome="";
@@ -29,6 +30,17 @@ public class PedidoControlador {
 		return pedido;
 	}
 	
+	
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
 
 	public int getPedidoCodigo() {
 		return pedidoCodigo;
@@ -44,12 +56,12 @@ public class PedidoControlador {
 
 	public PedidoControlador() {
 		pr = new PedidoRepositorio();
-		//mr = new MaterialRepositorio();
+		
 	}
 	
 	
 
-	public List<Pedido> getItemPedidos() {
+	public List<Pedido> getPedidos() {
 		pedidos = pr.recuperarTodos();
 		return pedidos;
 	}

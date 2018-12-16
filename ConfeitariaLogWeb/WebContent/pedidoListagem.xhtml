@@ -10,43 +10,52 @@
 </h:head>
 <h:body>
 	<h1>Sistema de Logistica de Confeitaria</h1>
-	<h2>Gerenciamento de Materiais</h2>
+	<h2>Gerenciamento de Pedidos</h2>
 
 	<h:form>
 		<!-- <h:outputLabel value="Filtrar por" for="chaveNome"/>
 		<h:inputText id="chaveNome" value="#{alunoControlador.chaveNome}"/>
 		<h:commandButton action="null" value="Buscar"/> -->
-		<p:commandButton action="#{materialControlador.incluir}"
-			value="Novo" />
+		<p:commandButton action="#{pedidoControlador.incluir}" value="Novo" />
 		<p:commandButton action="index" value="Voltar" />
-		<p:dataTable value="#{materialControlador.materiais}"
-			var="material" border="1">
+		<p:dataTable value="#{pedidoControlador.pedidos}" var="pedido"
+			border="1">
 			<p:column>
 				<f:facet name="header">ID</f:facet>
-				#{material.id}
+				#{pedido.id}
 			</p:column>
 			<p:column>
-				<f:facet name="header">Nome</f:facet>
-				#{material.nome}
+				<f:facet name="header">Status</f:facet>
+				#{pedido.status}
 			</p:column>
 			<p:column>
-				<f:facet name="header">Descrição</f:facet>
-				#{material.descricao}
+				<f:facet name="header">Data de Entrada</f:facet>
+				<h:outputText value="#{pedido.dataEntrada}">
+					<f:convertDateTime locale="pt,BR" dateStyle="long"
+						pattern="dd/MM/yyyy HH:mm" />
+				</h:outputText>
 			</p:column>
 			<p:column>
-				<f:facet name="header">Data de Validade</f:facet>
-				#{material.dataValidade}
+				<f:facet name="header">Data de Saida</f:facet>
+				<h:outputText value="#{pedido.dataSaida}">
+					<f:convertDateTime locale="pt,BR" dateStyle="long"
+						pattern="dd/MM/yyyy HH:mm" />
+				</h:outputText>
 			</p:column>
 			<p:column>
-				<f:facet name="header">Categorias</f:facet>
-				#{material.categoria.getNome()}
+				<f:facet name="header">Fornecedor</f:facet>
+				#{fornecedor.fornecedor.getId()}
+			</p:column>
+			<p:column>
+				<f:facet name="header">Funcionario</f:facet>
+				#{fornecedor.funcionario.getNome()}
 			</p:column>
 			<p:column>
 				<f:facet name="header">Operações</f:facet>
 				<p:commandButton value="Editar/Salvar" icon="pi pi-save"
-					action="#{materialControlador.editar(material)}" />
+					action="#{pedidoControlador.editar(pedido)}" />
 				<p:commandButton value="Excluir"
-					action="#{materialControlador.excluir(material)}" />
+					action="#{pedidoControlador.excluir(pedido)}" />
 			</p:column>
 		</p:dataTable>
 	</h:form>
