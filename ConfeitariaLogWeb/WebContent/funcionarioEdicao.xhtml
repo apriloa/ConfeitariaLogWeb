@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Sistema de Controle Acadêmico</title>
+</h:head>
+<h:body>
+
+<h1>Sistema de Logistica de Confeitaria</h1>
+<h2>Inclusão de Funcionario</h2>
+
+<h:form>
+ <p:panelGrid columns="2">
+  <h:outputLabel value="Id:" for="id" />
+  <p:inputMask id="id"  mask="" value="#{funcionarioControlador.funcionario.id}" />
+  <h:outputLabel value="Nome:" for="nome" />
+  <p:inputText id="nome" value="#{funcionarioControlador.funcionario.nome}" />
+  <h:outputLabel value="Telefone:" for="telefone" />
+  <p:inputMask id="telefone" mask="(99)9 9999-9999" value="#{funcionarioControlador.funcionario.telefone}" />
+  <h:outputLabel value="Endereço:" for="endereco" />
+  <p:inputText id="endereco" value="#{funcionarioControlador.funcionario.endereco}" />
+  <h:outputLabel value="CPF:" for="cpf" />
+  <p:inputMask id="cpf"  mask="" value="#{funcionarioControlador.funcionario.cpf}" />
+  <h:outputLabel value="Idade:" for="idade" />
+  <p:inputMask id="idade"  mask="" value="#{funcionarioControlador.funcionario.idade}" />
+   <h:outputLabel value="Sexo:" for="sexo" />
+  <h:selectOneMenu id="sexo" value="#{funcionarioControlador.funcionario.sexo}" >
+   <f:selectItem itemValue="M" itemLabel="Masculino" />
+   <f:selectItem itemValue="F" itemLabel="Feminino" />
+  </h:selectOneMenu>
+ 
+
+  
+ </p:panelGrid>
+ <p:commandButton action="#{funcionarioControlador.atualizar}" value="Confirmar" />
+ <p:commandButton action="funcionarioListagem" value="Cancelar" />
+</h:form>
+
+</h:body>
+</html>

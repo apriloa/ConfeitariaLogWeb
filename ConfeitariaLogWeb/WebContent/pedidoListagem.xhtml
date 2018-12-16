@@ -30,26 +30,24 @@
 			</p:column>
 			<p:column>
 				<f:facet name="header">Data de Entrada</f:facet>
-				<h:outputText value="#{pedido.dataEntrada}">
-					<f:convertDateTime locale="pt,BR" dateStyle="long"
-						pattern="dd/MM/yyyy HH:mm" />
-				</h:outputText>
+				 <h:outputText value="#{pedido.dataEntrada.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
+				</h:outputText> 
 			</p:column>
 			<p:column>
 				<f:facet name="header">Data de Saida</f:facet>
-				<h:outputText value="#{pedido.dataSaida}">
-					<f:convertDateTime locale="pt,BR" dateStyle="long"
-						pattern="dd/MM/yyyy HH:mm" />
+				<h:outputText value="#{pedido.dataSaida.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="GMT-03:00" />
 				</h:outputText>
-			</p:column>
-			<p:column>
+			 </p:column>
+		<!--	<p:column>
 				<f:facet name="header">Fornecedor</f:facet>
-				#{fornecedor.fornecedor.getId()}
+				#{pedido.fornecedor.getId()} 
 			</p:column>
 			<p:column>
 				<f:facet name="header">Funcionario</f:facet>
-				#{fornecedor.funcionario.getNome()}
-			</p:column>
+				#{pedido.funcionario.nome} 
+			</p:column> -->
 			<p:column>
 				<f:facet name="header">Operações</f:facet>
 				<p:commandButton value="Editar/Salvar" icon="pi pi-save"

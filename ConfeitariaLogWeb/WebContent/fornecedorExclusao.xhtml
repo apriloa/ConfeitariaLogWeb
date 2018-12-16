@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Sistema de Logistica de Confeitaria</title>
+</h:head>
+<h:body>
+
+<h1>Sistema de Logistica de Confeitaria</h1>
+<h2>Inclusão de Fornecedor</h2>
+
+<h:form>
+ <p:panelGrid columns="2">
+  <h:outputLabel value="Id:" for="nome" />
+  <p:inputMask id="id"  mask="" disabled="true" value="#{fornecedorControlador.fornecedor.id}" />
+  <h:outputLabel value="Nome:" for="nome" />
+  <p:inputText id="nome" disabled="true" value="#{fornecedorControlador.fornecedor.nome}" />
+  <h:outputLabel value="Telefone:" for="telefone" />
+  <p:inputMask id="telefone" mask="(99)9 9999-9999" disabled="true" value="#{fornecedorControlador.fornecedor.telefone}" />
+  <h:outputLabel value="Endereço:" for="endereco" />
+  <p:inputText id="endereco" disabled="true" value="#{fornecedorControlador.fornecedor.endereco}" />
+  <h:outputLabel value="CNPJ:" mask="" for="cnpj" />
+  <p:inputMask id="cnpj" mask="99.999.999/9999-99" disabled="true" value="#{fornecedorControlador.fornecedor.cnpj}" />
+	<h:outputLabel value="E-mail:" for="email" />
+  <p:inputText id="email" disabled="true" value="#{fornecedorControlador.fornecedor.email}" />
+  <h:outputLabel value="Categoria:" for="categoriaNome" />
+  <h:selectOneMenu id="categoriaNome" disabled="true" value="#{fornecedorControlador.categoriaCodigo}" >
+   <f:selectItems value="#{categoriaControlador.categorias}" 
+   var="categoria" itemValue="#{categoria.id}" itemLabel="#{categoria.nome}" />
+  </h:selectOneMenu>
+  
+ </p:panelGrid>
+ <p:commandButton action="#{fornecedorControlador.remover}" value="Confirmar" />
+ <p:commandButton action="fornecedorListagem" value="Cancelar" />
+</h:form>
+
+</h:body>
+</html>

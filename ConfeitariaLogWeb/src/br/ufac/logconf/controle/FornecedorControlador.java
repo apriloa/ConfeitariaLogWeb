@@ -13,9 +13,9 @@ public class FornecedorControlador {
 
 	private List<Fornecedor> fornecedores;
 	private FornecedorRepositorio fo;
-	private PedidoRepositorio pr;
+	private CategoriaRepositorio cr;
 	private Categoria categoria;
-	private int pedidoCodigo;
+	private int categoriaCodigo;
 	private Fornecedor fornecedor;
 	private String chaveNome="";
 	
@@ -28,23 +28,26 @@ public class FornecedorControlador {
 		return categoria;
 	}
 
+	
+
+	public int getCategoriaCodigo() {
+		return categoriaCodigo;
+	}
+
+
+	public void setCategoriaCodigo(int categoriaCodigo) {
+		this.categoriaCodigo = categoriaCodigo;
+	}
 
 
 	public FornecedorControlador() {
 		fo = new FornecedorRepositorio();
-		pr = new PedidoRepositorio();
+		cr = new CategoriaRepositorio();
 		
 		
 	}
 	
 
-	public int getPedidoCodigo() {
-		return pedidoCodigo;
-	}
-
-	public void setPedidoCodigo(int pedidoCodigo) {
-		this.pedidoCodigo = pedidoCodigo;
-	}
 
 	public List<Fornecedor> getFornecedores() {
 		fornecedores = fo.recuperarTodos();
@@ -62,30 +65,30 @@ public class FornecedorControlador {
 
 	public String incluir() {
 		fornecedor = new Fornecedor();
-		return "funcionarioInclusao";
+		return "fornecedorInclusao";
 	}
 	
 	public String adicionar() {
-	fornecedor.setPedidos(pr.recuperar(pedidoCodigo));
+	fornecedor.setCategorias(cr.recuperar(categoriaCodigo));
 	fo.adicionar(fornecedor);
-		return "funcionarioListagem";
+		return "fornecedorListagem";
 	}
 	
 	public String editar(Fornecedor fornecedor) {
 		this.fornecedor=fornecedor;
-		pedidoCodigo = fornecedor.getPedidos().getId();
-		return "funcionarioEdicao";
+		categoriaCodigo = fornecedor.getCategorias().getId();
+		return "fornecedorEdicao";
 	}
 	
 	public String atualizar() {
-		fornecedor.setPedidos(pr.recuperar(pedidoCodigo));
+		fornecedor.setCategorias(cr.recuperar(categoriaCodigo));
 		fo.atualizar(fornecedor);
-		return "funcionarioListagem";
+		return "fornecedorListagem";
 	}
 	
 	public String excluir(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
-		pedidoCodigo = fornecedor.getPedidos().getId();
+		categoriaCodigo = fornecedor.getCategorias().getId();
 		return "fornecedorExclusao";
 	}
 	
