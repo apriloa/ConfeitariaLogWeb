@@ -8,16 +8,18 @@ import br.ufac.logconf.repositorios.*;
 
 @ManagedBean(name = "pedidoControlador")
 @SessionScoped
-@SuppressWarnings("unused")
 public class PedidoControlador {
 
 	private List<Pedido> pedidos;
+	private List<Material> materiais;
+	private List<ItemPedido> itensSelect;
 	private PedidoRepositorio pr;
 	private FornecedorRepositorio fr;
 	private FuncionarioRepositorio fur;
 	private Funcionario funcionario;
 	private Fornecedor fornecedor;
 	private Pedido pedido;
+	private ItemPedido item;
 	private int pedidoCodigo;
 	private int fornecedorCodigo;
 	private int funcionarioCodigo;
@@ -91,6 +93,7 @@ public class PedidoControlador {
 		//fornecedor.setId(pr.recuperar(fornecedorCodigo).getId());
 		pedido.setFornecedores(fr.recuperarTodosPorID(fornecedorCodigo));
 		pedido.setFuncionario(fur.recuperar(funcionarioCodigo));
+		pedido.setItemspedidos(itensSelect);
 		//funcionario.setId(fur.recuperar(funcionarioCodigo).getId());
 		pr.adicionar(pedido);
 		return "pedidoListagem";
@@ -118,4 +121,30 @@ public class PedidoControlador {
 		pr.remover(pedido);
 		return "pedidoListagem";
 	}
+	
+	
+
+
+	public List<Material> getMateriais() {
+		return materiais;
+	}
+
+	public void setMateriais(List<Material> materiais) {
+		this.materiais = materiais;
+	}
+
+	public List<ItemPedido> getItensSelect() {
+		return itensSelect;
+	}
+
+	public void setItensSelect(List<ItemPedido> itensSelect) {
+		this.itensSelect = itensSelect;
+	}
+
+	public ItemPedido getItem() {
+		return item;
+	}
+	
+	
+	
 }

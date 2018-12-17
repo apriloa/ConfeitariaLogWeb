@@ -48,9 +48,34 @@
 			</h:selectOneMenu>
 
 		</p:panelGrid>
-		<p:commandButton action="#{fornecedorControlador.adicionar}"
+		<p:panelGrid columns="2">
+			<p:dataTable value="#{pedidoControlador.materiais}" var="material"
+				 border="1">
+				<p:column>
+					<f:facet name="header">ID</f:facet>
+				#{pedidoControlador.material.id}
+			</p:column>
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+				#{pedidoControlador.material.nome}
+			</p:column>
+				<p:column>
+					<f:facet name="header">Descrição</f:facet>
+				#{pedidoControlador.material.descricao}
+			</p:column>
+				<p:column>
+					<f:facet name="header">Data de Validade</f:facet>
+				#{pedidoControlador.material.dataValidade}
+			</p:column>
+				<p:column>
+					<f:facet name="header">Categorias</f:facet>
+				#{pedidoControlador.material.categoria.getNome()}
+			</p:column>
+			</p:dataTable>
+		</p:panelGrid>
+		<p:commandButton action="#{pedidoControlador.adicionar}"
 			value="Confirmar" />
-		<p:commandButton action="fornecedorListagem" value="Cancelar" />
+		<p:commandButton action="pedidoListagem" value="Cancelar" />
 	</h:form>
 
 </h:body>
