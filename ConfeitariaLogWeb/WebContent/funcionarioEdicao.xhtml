@@ -12,12 +12,12 @@
 <h:body>
 
 <h1>Sistema de Logistica de Confeitaria</h1>
-<h2>Inclusão de Funcionario</h2>
+<h2>Edição de Funcionario</h2>
 
 <h:form>
  <p:panelGrid columns="2">
   <h:outputLabel value="Id:" for="id" />
-  <p:inputMask id="id"  mask="" value="#{funcionarioControlador.funcionario.id}" />
+  <p:inputMask id="id"  mask="" disabled="true" value="#{funcionarioControlador.funcionario.id}" />
   <h:outputLabel value="Nome:" for="nome" />
   <p:inputText id="nome" value="#{funcionarioControlador.funcionario.nome}" />
   <h:outputLabel value="Telefone:" for="telefone" />

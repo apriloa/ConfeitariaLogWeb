@@ -28,6 +28,8 @@
   <p:inputMask id="cnpj" mask="99.999.999/9999-99" value="#{fornecedorControlador.fornecedor.cnpj}" />
 	<h:outputLabel value="E-mail:" for="email" />
   <p:inputText id="email" value="#{fornecedorControlador.fornecedor.email}" />
+ 
+ 
   <h:outputLabel value="Categoria:" for="categoriaNome" />
   <h:selectOneMenu id="categoriaNome" value="#{fornecedorControlador.categoriaCodigo}" >
    <f:selectItems value="#{categoriaControlador.categorias}" 

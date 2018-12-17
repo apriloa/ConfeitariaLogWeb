@@ -12,25 +12,25 @@
 <h:body>
 
 <h1>Sistema de Logistica de Confeitaria</h1>
-<h2>Inclusão de Categoria</h2>
+<h2>Exclusão de Categoria</h2>
 
 <h:form>
  <p:panelGrid columns="2">
   <h:outputLabel value="ID:" for="id" />
-  <p:inputMask id="id"  mask="" value="#{categoriaControlador.categoria.id}" />
+  <p:inputMask id="id"  mask="" disabled="true" value="#{categoriaControlador.categoria.id}" />
   <h:outputLabel value="Nome:" for="nome" />
-  <p:inputText id="nome" value="#{categoriaControlador.categoria.nome}" />
+  <p:inputText id="nome" disabled="true" value="#{categoriaControlador.categoria.nome}" />
   <h:outputLabel value="Descrição:" for="descricao" />
-  <p:inputMask id="descricao" mask="" value="#{categoriaControlador.categoria.descricao}" />
+  <p:inputMask id="descricao" mask="" disabled="true" value="#{categoriaControlador.categoria.descricao}" />
  
  
    <h:outputLabel value="Fornecedor:" for="fornecedorNome" />
-  <h:selectOneMenu id="fornecedorNome" value="#{categoriaControlador.fornecedorCodigo}" >
+  <h:selectOneMenu id="fornecedorNome" disabled="true" value="#{categoriaControlador.fornecedorCodigo}" >
    <f:selectItems value="#{fornecedorControlador.fornecedores}" 
    var="fornecedor" itemValue="#{fornecedor.id}" itemLabel="#{fornecedor.nome}" />
   </h:selectOneMenu>
  </p:panelGrid>
- <p:commandButton action="#{categoriaControlador.adicionar}" value="Confirmar" />
+ <p:commandButton action="#{categoriaControlador.remover}" value="Confirmar" />
  <p:commandButton action="categoriaListagem" value="Cancelar" />
 </h:form>
 

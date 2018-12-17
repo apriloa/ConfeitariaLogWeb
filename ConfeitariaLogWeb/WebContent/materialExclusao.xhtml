@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Sistema de Logistica Confeitaria</title>
+</h:head>
+<h:body>
+
+<h1>Sistema de Logistica de Confeitaria</h1>
+<h2>Exclusão de Material</h2>
+
+<h:form>
+ <p:panelGrid columns="2">
+  <h:outputLabel value="ID:" for="id" />
+  <p:inputMask id="id"  mask="9" disabled="true" value="#{materialControlador.material.id}" />
+  <h:outputLabel value="Nome:" for="nome" />
+  <p:inputText id="nome" disabled="true" value="#{materialControlador.material.nome}" />
+  <h:outputLabel value="Descrição:" for="descricao" />
+  <p:inputText id="descricao" disabled="true" value="#{materialControlador.material.descricao}" />
+ <h:outputLabel value="Data de Validade:" for="dataValidade" />
+  <p:inputMask id="dataValidade" mask="99/99/9999" disabled="true" value="#{materialControlador.material.dataValidade}" />
+ 
+  <h:outputLabel value="Categoria:" for="categoriaNome" />
+  <h:selectOneMenu id="categoriaNome" disabled="true" value="#{materialControlador.categoriaCodigo}" >
+   <f:selectItems value="#{categoriaControlador.categorias}" 
+   var="categoria" itemValue="#{categoria.id}" itemLabel="#{categoria.nome}" />
+  </h:selectOneMenu>
+ </p:panelGrid>
+ <p:commandButton action="#{materialControlador.remover}" value="Confirmar" />
+ <p:commandButton action="materialListagem" value="Cancelar" />
+</h:form>
+
+</h:body>
+</html> 

@@ -14,8 +14,8 @@ public class CategoriaControlador {
 	private CategoriaRepositorio cr;
 	private Categoria categoria;
 	private FornecedorRepositorio fr;
+	private Fornecedor fornecedor;
 	private int fornecedorCodigo;
-	//private Fornecedor fornecedor;
 	private String chaveNome = "";
 
 	public Categoria getCategoria() {
@@ -26,6 +26,13 @@ public class CategoriaControlador {
 
 	public int getFornecedorCodigo() {
 		return fornecedorCodigo;
+	}
+
+	
+
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
 	}
 
 
@@ -39,6 +46,11 @@ public class CategoriaControlador {
 	public CategoriaControlador() {
 		cr = new CategoriaRepositorio();
 		fr = new FornecedorRepositorio();
+	}
+	
+	public List<Categoria> getCategorias() {
+		categorias = cr.recuperarTodos();
+		return categorias;
 	}
 
 	public String getChaveNome() {
@@ -54,14 +66,11 @@ public class CategoriaControlador {
 		return "categoriaInclusao";
 	}
 
-	public List<Categoria> getCategorias() {
-		categorias = cr.recuperarTodos();
-		return categorias;
-	}
+	
 
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
-	}
+//	public void setCategorias(List<Categoria> categorias) {
+//		this.categorias = categorias;
+//	}
 
 	public String adicionar() {
 		categoria.setFornecedor(fr.recuperar(fornecedorCodigo));

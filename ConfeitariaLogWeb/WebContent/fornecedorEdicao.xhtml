@@ -12,12 +12,12 @@
 <h:body>
 
 <h1>Sistema de Logistica de Confeitaria</h1>
-<h2>Inclusão de Fornecedor</h2>
+<h2>Edição de Fornecedor</h2>
 
 <h:form>
  <p:panelGrid columns="2">
   <h:outputLabel value="Id:" for="nome" />
-  <p:inputMask id="id"  mask="" value="#{fornecedorControlador.fornecedor.id}" />
+  <p:inputMask id="id"  mask="" disabled="true" value="#{fornecedorControlador.fornecedor.id}" />
   <h:outputLabel value="Nome:" for="nome" />
   <p:inputText id="nome" value="#{fornecedorControlador.fornecedor.nome}" />
   <h:outputLabel value="Telefone:" for="telefone" />
