@@ -12,18 +12,45 @@ import br.ufac.logconf.repositorios.*;
 public class ItemPedidoControlador {
 
 	private List<ItemPedido> itemPedidos;
+	private List<Material> itensSelect;
 	private MaterialRepositorio mr;
 	private ItemPedidoRepositorio ipr;
+	private Material material;
 	private ItemPedido itemPedido;
+	private int quantidadeMaterial;
 	private int materialCodigo;
 	private String chaveNome="";
 	
+	
+
+
+	public int getQuantidadeMaterial() {
+		return quantidadeMaterial;
+	}
+
+
+
+
+	public void setQuantidadeMaterial(int quantidadeMaterial) {
+		this.quantidadeMaterial = quantidadeMaterial;
+	}
+
+
 
 
 	public ItemPedido getItemPedido() {
 		return itemPedido;
 	}
 	
+	
+	
+
+	public Material getMaterial() {
+		return material;
+	}
+
+
+
 
 	public int getMaterialCodigo() {
 		return materialCodigo;
@@ -90,5 +117,15 @@ public class ItemPedidoControlador {
 	public String remover() {
 		ipr.remover(itemPedido);
 		return "itemPedidoListagem";
+	}
+
+
+	public List<Material> getItensSelect() {
+		return itensSelect;
+	}
+
+
+	public void setItensSelect(List<Material> itensSelect) {
+		this.itensSelect = itensSelect;
 	}
 }

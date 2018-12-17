@@ -12,11 +12,11 @@ public class PedidoControlador {
 
 	private List<Pedido> pedidos;
 	private List<Material> materiais;
-	private List<ItemPedido> itensSelect;
 	
 	private PedidoRepositorio pr;
 	private FornecedorRepositorio fr;
 	private FuncionarioRepositorio fur;
+	private ItemPedidoRepositorio ipr;
 	
 	private Funcionario funcionario;
 	private Fornecedor fornecedor;
@@ -26,6 +26,12 @@ public class PedidoControlador {
 	private int pedidoCodigo;
 	private int fornecedorCodigo;
 	private int funcionarioCodigo;
+	private int itemCodigo;
+	
+	public int getMaterialCodigo() {
+		return itemCodigo;
+	}
+
 	private int quantidade;
 
 	private String chaveNome = "";
@@ -41,6 +47,7 @@ public class PedidoControlador {
 		pr = new PedidoRepositorio();
 		fr = new FornecedorRepositorio();
 		fur = new FuncionarioRepositorio();
+		ipr = new ItemPedidoRepositorio();
 	}
 
 
@@ -103,10 +110,12 @@ public class PedidoControlador {
 	}
 
 	public String adicionar() {
-		fornecedor.setId(pr.recuperar(fornecedorCodigo).getId());
+		//fornecedor.setId(pr.recuperar(fornecedorCodigo).getId());
 		pedido.setFornecedores(fr.recuperarTodosPorID(fornecedorCodigo));
 		pedido.setFuncionario(fur.recuperar(funcionarioCodigo));
-		pedido.setItemspedidos(itensSelect);
+		pedido.setItemspedidos(ipr.recuperarTodosPorID(itemCodigo));
+		pedido.setDataEntrada(pr.recuperar(pedidoCodigo).getDataEntrada());
+		pedido.setDataEntrada(pr.recuperar(pedidoCodigo).getDataSaida());
 		funcionario.setId(fur.recuperar(funcionarioCodigo).getId());
 		pr.adicionar(pedido);
 		return "pedidoListagem";
@@ -142,7 +151,7 @@ public class PedidoControlador {
 	public void setMateriais(List<Material> materiais) {
 		this.materiais = materiais;
 	}
-
+/*
 	public List<ItemPedido> getItensSelect() {
 		return itensSelect;
 	}
@@ -150,7 +159,7 @@ public class PedidoControlador {
 	public void setItensSelect(List<ItemPedido> itensSelect) {
 		this.itensSelect = itensSelect;
 	}
-
+*/
 
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;

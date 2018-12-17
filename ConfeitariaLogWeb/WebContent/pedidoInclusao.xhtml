@@ -54,7 +54,8 @@
 			<div class="ui-g-8">
 				<p:panelGrid columns="1">
 					<p:dataTable value="#{materialControlador.materiais}" var="material"
-						border="1" selectionMode="multiple" selection="#{pedidoControlador.itensSelect}" rowKey="#{material.id}">
+						border="1" selectionMode="multiple" selection="#{itemPedidoControlador.itensSelect}" rowKey="#{material.id}" paginator="true" rows="5">
+						<p:ajax event="toggleSelect" listener="#{itemPedidoControlador.itensSelect}"/>
 						<p:column>
 							<f:facet name="header">ID</f:facet>
 				#{material.id}
@@ -74,6 +75,10 @@
 						<p:column>
 							<f:facet name="header">Categorias</f:facet>
 				#{material.categoria.getNome()}
+			</p:column>
+			<p:column>
+							<f:facet name="header">Quantidade (Informe)</f:facet>
+					<p:inputText id="quantidade" value="#{itemPedidoControlador.quantidadeMaterial}" />
 			</p:column>
 					</p:dataTable>
 <!-- 					<h:outputLabel value="Quantidade:" for="quantidade" />
