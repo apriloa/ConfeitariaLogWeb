@@ -13,21 +13,36 @@ public class PedidoControlador {
 	private List<Pedido> pedidos;
 	private List<Material> materiais;
 	private List<ItemPedido> itensSelect;
+	
 	private PedidoRepositorio pr;
 	private FornecedorRepositorio fr;
 	private FuncionarioRepositorio fur;
+	
 	private Funcionario funcionario;
 	private Fornecedor fornecedor;
 	private Pedido pedido;
 	private ItemPedido item;
+	
 	private int pedidoCodigo;
 	private int fornecedorCodigo;
 	private int funcionarioCodigo;
-	private String chaveNome = "";
+	private int quantidade;
 
-	public void setPedido(Pedido pedido) {
-		this.pedido = pedido;
+	private String chaveNome = "";
+	
+	
+	
+	public int getQuantidade() {
+		return quantidade;
 	}
+
+
+	public PedidoControlador() {
+		pr = new PedidoRepositorio();
+		fr = new FornecedorRepositorio();
+		fur = new FuncionarioRepositorio();
+	}
+
 
 	public Pedido getPedido() {
 		return pedido;
@@ -39,6 +54,10 @@ public class PedidoControlador {
 
 	public Fornecedor getFornecedor() {
 		return fornecedor;
+	}
+	
+	public ItemPedido getItem() {
+		return item;
 	}
 
 	public int getPedidoCodigo() {
@@ -65,12 +84,6 @@ public class PedidoControlador {
 		this.funcionarioCodigo = funcionarioCodigo;
 	}
 
-	public PedidoControlador() {
-		pr = new PedidoRepositorio();
-		fr = new FornecedorRepositorio();
-		fur = new FuncionarioRepositorio();
-	}
-
 	public List<Pedido> getPedidos() {
 		pedidos = pr.recuperarTodos();
 		return pedidos;
@@ -90,11 +103,11 @@ public class PedidoControlador {
 	}
 
 	public String adicionar() {
-		//fornecedor.setId(pr.recuperar(fornecedorCodigo).getId());
+		fornecedor.setId(pr.recuperar(fornecedorCodigo).getId());
 		pedido.setFornecedores(fr.recuperarTodosPorID(fornecedorCodigo));
 		pedido.setFuncionario(fur.recuperar(funcionarioCodigo));
 		pedido.setItemspedidos(itensSelect);
-		//funcionario.setId(fur.recuperar(funcionarioCodigo).getId());
+		funcionario.setId(fur.recuperar(funcionarioCodigo).getId());
 		pr.adicionar(pedido);
 		return "pedidoListagem";
 	}
@@ -121,9 +134,6 @@ public class PedidoControlador {
 		pr.remover(pedido);
 		return "pedidoListagem";
 	}
-	
-	
-
 
 	public List<Material> getMateriais() {
 		return materiais;
@@ -141,10 +151,8 @@ public class PedidoControlador {
 		this.itensSelect = itensSelect;
 	}
 
-	public ItemPedido getItem() {
-		return item;
+
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
-	
-	
-	
 }

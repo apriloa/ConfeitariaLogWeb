@@ -15,64 +15,72 @@
 	<h2>Inclusão de Pedidos</h2>
 
 	<h:form>
-		<p:panelGrid columns="2">
-			<h:outputLabel value="Id:" for="nome" />
-			<p:inputText id="id" mask="" value="#{pedidoControlador.pedido.id}" />
-			<h:outputLabel value="Status:" for="status" />
-			<h:selectOneMenu id="status"
-				value="#{pedidoControlador.pedido.status}">
-				<f:selectItem itemValue="Solicitado" itemLabel="Solicitado" />
-				<f:selectItem itemValue="Aguardando" itemLabel="Aguardando" />
-				<f:selectItem itemValue="Finalizado" itemLabel="Finalizado" />
-			</h:selectOneMenu>
-			<h:outputLabel value="Fornecedor:" for="fornecedorNome" />
-			<h:selectOneMenu id="fornecedorNome"
-				value="#{pedidoControlador.fornecedorCodigo}">
-				<f:selectItems value="#{fornecedorControlador.fornecedores}"
-					var="fornecedor" itemValue="#{fornecedor.id}"
-					itemLabel="#{fornecedor.nome}" />
-			</h:selectOneMenu>
-			<h:outputLabel value="Categoria:" for="categoriaNome" />
-			<h:selectOneMenu id="categoriaNome"
-				value="#{fornecedorControlador.categoriaCodigo}">
-				<f:selectItems value="#{categoriaControlador.categorias}"
-					var="categoria" itemValue="#{categoria.id}"
-					itemLabel="#{categoria.nome}" />
-			</h:selectOneMenu>
-			<h:outputLabel value="Funcionario:" for="funcionarioNome" />
-			<h:selectOneMenu id="funcionarioNome"
-				value="#{pedidoControlador.funcionarioCodigo}">
-				<f:selectItems value="#{funcionarioControlador.funcionarios}"
-					var="funcionario" itemValue="#{funcionario.id}"
-					itemLabel="#{funcionario.nome}" />
-			</h:selectOneMenu>
+		<div class="ui-g">
+			<div class="ui-g-4">
+				<p:panelGrid columns="2">
+					<h:outputLabel value="Id:" for="nome" />
+					<p:inputText id="id" mask="" value="#{pedidoControlador.pedido.id}" />
+					<h:outputLabel value="Status:" for="status" />
+					<h:selectOneMenu id="status"
+						value="#{pedidoControlador.pedido.status}">
+						<f:selectItem itemValue="Solicitado" itemLabel="Solicitado" />
+						<f:selectItem itemValue="Aguardando" itemLabel="Aguardando" />
+						<f:selectItem itemValue="Finalizado" itemLabel="Finalizado" />
+					</h:selectOneMenu>
+					<h:outputLabel value="Fornecedor:" for="fornecedorNome" />
+					<h:selectOneMenu id="fornecedorNome"
+						value="#{pedidoControlador.fornecedorCodigo}">
+						<f:selectItems value="#{fornecedorControlador.fornecedores}"
+							var="fornecedor" itemValue="#{fornecedor.id}"
+							itemLabel="#{fornecedor.nome}" />
+					</h:selectOneMenu>
+					<h:outputLabel value="Categoria:" for="categoriaNome" />
+					<h:selectOneMenu id="categoriaNome"
+						value="#{fornecedorControlador.categoriaCodigo}">
+						<f:selectItems value="#{categoriaControlador.categorias}"
+							var="categoria" itemValue="#{categoria.id}"
+							itemLabel="#{categoria.nome}" />
+					</h:selectOneMenu>
+					<h:outputLabel value="Funcionario:" for="funcionarioNome" />
+					<h:selectOneMenu id="funcionarioNome"
+						value="#{pedidoControlador.funcionarioCodigo}">
+						<f:selectItems value="#{funcionarioControlador.funcionarios}"
+							var="funcionario" itemValue="#{funcionario.id}"
+							itemLabel="#{funcionario.nome}" />
+					</h:selectOneMenu>
 
-		</p:panelGrid>
-		<p:panelGrid columns="2">
-			<p:dataTable value="#{pedidoControlador.materiais}" var="material"
-				 border="1">
-				<p:column>
-					<f:facet name="header">ID</f:facet>
-				#{pedidoControlador.material.id}
+				</p:panelGrid>
+			</div>
+			<div class="ui-g-8">
+				<p:panelGrid columns="1">
+					<p:dataTable value="#{materialControlador.materiais}" var="material"
+						border="1" selectionMode="multiple" selection="#{pedidoControlador.itensSelect}" rowKey="#{material.id}">
+						<p:column>
+							<f:facet name="header">ID</f:facet>
+				#{material.id}
 			</p:column>
-				<p:column>
-					<f:facet name="header">Nome</f:facet>
-				#{pedidoControlador.material.nome}
+						<p:column>
+							<f:facet name="header">Nome</f:facet>
+				#{material.nome}
 			</p:column>
-				<p:column>
-					<f:facet name="header">Descrição</f:facet>
-				#{pedidoControlador.material.descricao}
+						<p:column>
+							<f:facet name="header">Descrição</f:facet>
+				#{material.descricao}
 			</p:column>
-				<p:column>
-					<f:facet name="header">Data de Validade</f:facet>
-				#{pedidoControlador.material.dataValidade}
+						<p:column>
+							<f:facet name="header">Data de Validade</f:facet>
+				#{material.dataValidade}
 			</p:column>
-				<p:column>
-					<f:facet name="header">Categorias</f:facet>
-				#{pedidoControlador.material.categoria.getNome()}
+						<p:column>
+							<f:facet name="header">Categorias</f:facet>
+				#{material.categoria.getNome()}
 			</p:column>
-			</p:dataTable>
-		</p:panelGrid>
+					</p:dataTable>
+<!-- 					<h:outputLabel value="Quantidade:" for="quantidade" />
+					<p:inputText id="quantidade" value="#{pedidoControlador.quantidade}" /> -->
+				</p:panelGrid>
+			</div>
+		</div>
 		<p:commandButton action="#{pedidoControlador.adicionar}"
 			value="Confirmar" />
 		<p:commandButton action="pedidoListagem" value="Cancelar" />
